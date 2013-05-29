@@ -1,11 +1,11 @@
 # resizable-textarea
 
-make a textarea auto resizable. [demo](http://ramitos.github.com/resizable-textarea/)
+Setup textarea to resize as content changes
 
 ## install
 
 ```bash
-$ component install ramitos/resizable-textarea
+$ component install JayceTDE/resizable-textarea
 ```
 
 ## api

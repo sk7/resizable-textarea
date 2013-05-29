@@ -1,13 +1,12 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "name": "resizable-textarea",
-  "repo": "ramitos/resizable-textarea",
-  "description": "make a textarea auto resizable",
-  "twitter": "@ramitos",
+  "repo": "JayceTDE/resizable-textarea",
+  "description": "Textarea resizes as content changes",
   "license": "MIT",
-  "main": "src/rta.js",
+  "main": "index.js",
   "scripts": [
-    "src/rta.js"
+    "index.js"
   ],
   "dependencies": {
     "component/event": "*"

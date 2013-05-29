@@ -29,7 +29,7 @@ module.exports = function (element, options) {
 
   });
 
-  // set the minimum rows
+  // set initial number of rows
   element.setAttribute('rows', min);
 
 };
