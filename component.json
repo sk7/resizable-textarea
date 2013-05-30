@@ -9,7 +9,11 @@
   "scripts": [
     "src/rta.js"
   ],
+  "styles": [
+    "src/style.css"
+  ],
   "dependencies": {
-    "component/event": "*"
+    "component/event": "*",
+    "jkroso/computed-style": "*"
   }
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="build/build.css" />
+    
+    <style>
+        textarea {
+            font-family: sans-serif;
+        }
+    </style>
+    
+</head>
+<body>
+
+<textarea></textarea>
+
+<script src="build/build.js"></script>
+<script>
+
+var rta = require('resizable-textarea')
+  , textarea = document.querySelector('textarea')
+;
+
+rta(textarea, { min: 20, max: 200 });
+
+</script>
+
+</body>
+</html>
