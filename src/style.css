@@ -1,0 +1,9 @@
+.resizable-textarea {
+    position: absolute;
+    visibility: hidden;
+    left: -1000px;
+    top: -1000px;
+    height: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+}

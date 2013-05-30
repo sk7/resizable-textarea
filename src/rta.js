@@ -1,35 +1,54 @@
 var ev = require('event')
-  , splitReg = /\r\n|\r|\n/
+  , style = require('computed-style')
+  , emptyLineReg = /(\n|\r|\n\r)$/g
+  , styleList = [
+      'font-size'
+    , 'font-style'
+    , 'font-weight'
+    , 'font-family'
+    , 'line-height'
+    , 'text-transform'
+    , 'letter-spacing'
+    , 'width'
+  ]
 ;
+
+function duplicateStyles(dup, el) {
+  var i = 0
+    , l = styleList.length
+  ;
+  while (i < l) {
+    dup.style[styleList[i]] = style(el)[styleList[i]];
+    i += 1;
+  }
+}
 
 module.exports = function (element, options) {
 
   options = options || {};
 
-  var min = options.min || 1
+  var duplicate = document.createElement('div')
+    , min = options.min || 20
     , max = options.max || Infinity
   ;
 
+  duplicate.className = 'resizable-textarea';
+
+  duplicateStyles(duplicate, element);
+  document.body.appendChild(duplicate);
+
   ev.bind(element, 'input', function () {
-
-    var val = element.value
-      , lines = val.split(splitReg)
-      , cols = element.clientHeight < element.scrollHeight ? element.cols : element.cols + 2
-      , rows = 0
-      , i = 0
-      , l = lines.length
-    ;
-
-    while (i < l) {
-        rows += Math.max(1, Math.ceil(lines[i].length / cols));
-        i += 1;
-    }
-
-    element.setAttribute('rows', Math.max(min, Math.min(max, rows)));
+    
+    // If the last line is empty, then add in a space to match textarea
+    duplicate.textContent = element.value.replace(emptyLineReg, '$1&nbsp;');
+    
+    var height = parseInt(style(duplicate).height, 10);
+    
+    element.style.height = Math.max(min, Math.min(max, height)) + 'px';
 
   });
 
   // set the minimum rows
-  element.setAttribute('rows', min);
+  element.style.height = min + 'px';
 
 };

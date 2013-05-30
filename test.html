@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+
+    <link rel="stylesheet" href="build/build.css" />
+    
+    <style>
+        textarea {
+            font-family: sans-serif;
+        }
+    </style>
+    
+</head>
 <body>
 
 <textarea></textarea>
@@ -12,7 +22,7 @@ var rta = require('resizable-textarea')
   , textarea = document.querySelector('textarea')
 ;
 
-rta(textarea, { min: 2, max: 5});
+rta(textarea, { min: 20, max: 200 });
 
 </script>
 
