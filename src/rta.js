@@ -44,6 +44,8 @@ module.exports = function (element, options) {
     
     var height = parseInt(style(duplicate).height, 10);
     
+    console.log(height);
+    
     element.style.height = Math.max(min, Math.min(max, height)) + 'px';
 
   });
