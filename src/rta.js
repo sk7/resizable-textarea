@@ -37,18 +37,23 @@ module.exports = function (element, options) {
   duplicateStyles(duplicate, element);
   document.body.appendChild(duplicate);
 
-  ev.bind(element, 'input', function () {
-    
+  function resize() {
+  
     // If the last line is empty, then add in a space to match textarea
     duplicate.textContent = element.value.replace(emptyLineReg, '$1&nbsp;');
     
     var height = parseInt(style(duplicate).height, 10);
     
     element.style.height = Math.max(min, Math.min(max, height)) + 'px';
+      
+  }
 
-  });
+  ev.bind(element, 'input', resize);
 
-  // set the minimum rows
+  // set the minimum size
   element.style.height = min + 'px';
+  
+  // reference resize function for manually triggering
+  return resize;
 
 };
