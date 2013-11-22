@@ -1,6 +1,6 @@
 var ev = require('event')
   , style = require('computed-style')
-  , emptyLineReg = /(\n|\r|\n\r)$/g
+  , emptyLineReg = /(^|\n|\r|\n\r)$/g
   , styleList = [
       'font-size'
     , 'font-style'
@@ -10,6 +10,11 @@ var ev = require('event')
     , 'text-transform'
     , 'letter-spacing'
     , 'width'
+    , 'padding-top'
+    , 'padding-right'
+    , 'padding-bottom'
+    , 'padding-left'
+    , 'box-sizing'
   ]
 ;
 
@@ -52,6 +57,9 @@ module.exports = function (element, options) {
 
   // set the minimum size
   element.style.height = min + 'px';
+
+  // initiate textarea to correct size
+  resize();
   
   // reference resize function for manually triggering
   return resize;
