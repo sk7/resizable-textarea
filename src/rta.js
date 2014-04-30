@@ -1,4 +1,5 @@
 var ev = require('event')
+  , Emitter = require('emitter')
   , style = require('computed-style')
   , emptyLineReg = /(^|\n|\r|\n\r)$/g
   , styleList = [
@@ -29,7 +30,7 @@ function duplicateStyles(dup, el) {
 }
 
 module.exports = function (element, options) {
-
+  Emitter(element);
   options = options || {};
 
   var duplicate = document.createElement('div')
@@ -43,14 +44,19 @@ module.exports = function (element, options) {
   document.body.appendChild(duplicate);
 
   function resize() {
-  
+
     // If the last line is empty, then add in a space to match textarea
     duplicate.textContent = element.value.replace(emptyLineReg, '$1&nbsp;');
-    
+
     var height = parseInt(style(duplicate).height, 10);
-    
-    element.style.height = Math.max(min, Math.min(max, height)) + 'px';
-      
+    var new_height = Math.max(min, Math.min(max, height)) + 'px';
+    var old_height = element.style.height;
+
+    if ( old_height != new_height) {
+      element.style.height = new_height;
+      diff = parseInt(new_height.substring(0, new_height.length-2)) - parseInt(old_height.substring(0, old_height.length-2));
+      element.emit('resize',  diff);
+    }
   }
 
   ev.bind(element, 'input', resize);
